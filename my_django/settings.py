@@ -10,16 +10,23 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import json
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+file_dir = os.path.join(BASE_DIR, 'key.json')
+
+with open(file_dir, 'r', encoding='utf-8') as f:
+    data = json.load(f)
+    key = data['key']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-eh@92fca3zi0hw#3=b54ktr=3@yagjqzgibxysqskeih(+qor2'
+SECRET_KEY = '{}'.format(key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
